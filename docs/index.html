@@ -2,9 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=login.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Directorio Telefónico</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Ruta corregida -->
+    <link rel="stylesheet" href="/css/styles.css">
+    
     <style>
         /* Estilos generales */
         body {
@@ -17,7 +19,207 @@
             justify-content: flex-start; /* Alinea el contenido hacia la izquierda */
         }
 
-        /* Resto de tu CSS... */
+        /* Menú lateral */
+        .menu-lateral {
+            background-color: rgba(31, 31, 31, 0.9); /* Color del menú lateral con algo de transparencia */
+            width: 250px; /* Ancho del menú */
+            height: 100vh; /* Altura del menú */
+            padding-top: 20px; /* Espaciado superior */
+            position: fixed; /* Fijar el menú a la izquierda */
+            top: 0; /* Desde la parte superior */
+            left: 0; /* Desde la parte izquierda */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Sombra del menú */
+            display: flex; /* Para el layout del menú */
+            flex-direction: column; /* Coloca los elementos en columna */
+            align-items: center; /* Centra los elementos */
+            z-index: 1; /* Asegura que esté por encima del fondo */
+            transition: transform 0.3s ease; /* Transición suave para el despliegue */
+            transform: translateX(-100%); /* Oculta el menú inicialmente */
+        }
+
+        /* Título del menú */
+        .menu-lateral h2 {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        /* Lista de opciones del menú */
+        .menu-lateral ul {
+            list-style: none; /* Sin viñetas */
+            padding: 0; /* Sin padding */
+            margin: 0; /* Sin margen */
+            width: 100%; /* Ancho completo */
+        }
+
+        .menu-lateral ul li {
+            width: 100%; /* Ancho completo de cada opción */
+        }
+
+        /* Opciones del menú */
+        .menu-lateral ul li a {
+            text-decoration: none; /* Sin subrayado */
+            color: white; /* Color del texto */
+            font-size: 18px; /* Tamaño de fuente */
+            padding: 15px 20px; /* Espaciado interno */
+            display: flex; /* Para centrar íconos y texto */
+            align-items: center; /* Centra verticalmente */
+            gap: 15px; /* Separación entre íconos y texto */
+            transition: background-color 0.3s ease; /* Transición suave para el hover */
+            position: relative; /* Para el posicionamiento de fondo */
+            overflow: hidden; /* Para ocultar la parte de fondo */
+        }
+
+        /* Cambia el color de fondo cuando se pasa el cursor */
+        .menu-lateral ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Color hover más claro */
+        }
+
+        /* Estilo especial para la opción "Inicio" */
+        .menu-lateral ul li a.inicio.active {
+            background-color: rgba(255, 255, 255, 0.1); /* Color de fondo en estado activo */
+            color: white; /* Asegúrate que el texto sea visible */
+        }
+
+        /* Íconos del menú */
+        .menu-lateral ul li i {
+            font-size: 22px; /* Tamaño del ícono */
+        }
+
+        /* Botón de cerrar sesión */
+        .btn-logout {
+            background-color: #ff7043; /* Color de fondo del botón Cerrar sesión */
+            color: white; /* Color del texto del botón */
+            font-size: 18px; /* Tamaño de la fuente */
+            padding: 15px; /* Espaciado interno */
+            border: none; /* Sin borde */
+            border-radius: 25px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            width: 80%; /* Ancho del botón */
+            margin: 20px auto; /* Centrando el botón */
+            transition: background-color 0.3s ease; /* Transición suave */
+            display: flex; /* Para centrar íconos y texto */
+            align-items: center; /* Centra verticalmente */
+            justify-content: center; /* Centra horizontalmente */
+        }
+
+        .btn-logout:hover {
+            background-color: #ff7043; /* Color hover del botón */
+        }
+
+        .btn-logout i {
+            margin-right: 8px; /* Espacio entre ícono y texto */
+        }
+
+        /* Contenedor del fondo */
+        .fondo {
+            position: absolute; /* Permite que se superponga sobre el fondo */
+            top: 0; /* Desde la parte superior */
+            left: 250px; /* Empieza a la derecha del menú */
+            right: 0; /* Hasta el borde derecho */
+            bottom: 0; /* Hasta el borde inferior */
+            background-image: url('img/Fondo_1.jpg'); /* Ruta de la imagen de fondo */
+            background-size: cover; /* Ajustar la imagen al tamaño del contenedor */
+            background-position: center; /* Centra la imagen de fondo */
+            z-index: 0; /* Debajo del menú */
+        }
+
+        /* Estilos para resolución */
+        .resolucion {
+            width: 99%;
+            text-align: center;
+        }
+
+        /** Movil **/
+        @media (max-width: 767px) {
+            .desktop {
+                display: none;
+            }
+            .tablet {
+                display: none;
+            }
+        }
+
+        /** Tablet **/
+        @media (min-width: 768px) and (max-width: 990px) {
+            .desktop {
+                display: none;
+            }
+            .movil {
+                display: none;
+            }
+        }
+
+        /** Escritorio **/
+        @media (min-width: 991px) {
+            .tablet {
+                display: none;
+            }
+            .movil {
+                display: none;
+            }
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .menu-lateral {
+                width: 200px; /* Menú más estrecho en pantallas pequeñas */
+            }
+
+            .menu-lateral h2 {
+                font-size: 20px; /* Reducir tamaño del título en pantallas pequeñas */
+            }
+
+            .menu-lateral ul li a {
+                font-size: 16px; /* Reducir tamaño de fuente en pantallas pequeñas */
+                padding: 12px 15px; /* Espaciado interno más pequeño */
+            }
+
+            .btn-logout {
+                font-size: 16px; /* Reducir tamaño del botón en pantallas pequeñas */
+                padding: 10px; /* Espaciado interno más pequeño */
+            }
+
+            .fondo {
+                left: 200px; /* Ajusta la posición en pantallas pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-lateral {
+                width: 100%; /* Menú ocupa el 100% en pantallas muy pequeñas */
+                position: relative; /* Cambiar posición para que el menú no esté fijo */
+                transform: translateX(0); /* Mostrar el menú */
+            }
+
+            .fondo {
+                left: 0; /* Ajusta la posición en pantallas muy pequeñas */
+                right: 0; /* Ajusta la posición en pantallas muy pequeñas */
+            }
+        }
+
+        /* Mostrar menú al hacer clic */
+        .menu-visible {
+            transform: translateX(0); /* Muestra el menú */
+        }
+
+        /* Estilos del botón hamburguesa */
+        .menu-toggle {
+            position: fixed; /* Fijo en la parte superior izquierda */
+            top: 20px; /* Desde la parte superior */
+            left: 20px; /* Desde la izquierda */
+            z-index: 2; /* Asegura que esté por encima del menú */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            color: #333; /* Color inicial del ícono */
+            font-size: 30px; /* Tamaño del ícono */
+            transition: color 0.3s ease; /* Transición para el cambio de color */
+        }
+
+        /* Clase para cambiar el color del ícono cuando el menú está visible */
+        .menu-toggle.white {
+            color: white; /* Cambiar a blanco */
+        }
     </style>
     <script>
         function cerrarSesion() {
@@ -27,7 +229,27 @@
             }
         }
 
-        // Resto de tu JavaScript...
+        // Función para activar el enlace de "Inicio"
+        function activarInicio() {
+            // Quitar la clase 'active' de todos los enlaces
+            var enlaces = document.querySelectorAll('.menu-lateral ul li a');
+            enlaces.forEach(function(enlace) {
+                enlace.classList.remove('active');
+            });
+
+            // Añadir la clase 'active' solo al enlace de 'Inicio'
+            var inicio = document.querySelector('.menu-lateral ul li a.inicio');
+            inicio.classList.add('active');
+        }
+
+        // Función para mostrar/ocultar el menú
+        function toggleMenu() {
+            var menu = document.querySelector('.menu-lateral');
+            var menuToggle = document.querySelector('.menu-toggle');
+
+            menu.classList.toggle('menu-visible'); // Mostrar u ocultar el menú
+            menuToggle.classList.toggle('white'); // Cambiar color del ícono
+        }
     </script>
 </head>
 <body>
@@ -56,6 +278,9 @@
 
     <!-- Contenedor de fondo -->
     <div class="fondo"></div>
+    <script>
+        window.location.href = "login.html";
+    </script>
     
 </body>
 </html>
