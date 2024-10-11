@@ -161,18 +161,20 @@
     </div>
 
     <script>
-        function validarLogin() {
-            var username = document.getElementById("Usuario").value; // Cambiado a "Usuario"
-            var password = document.getElementById("Contraseña").value; // Cambiado a "Contraseña"
+       function validarLogin() {
+    var username = document.getElementById("Usuario").value; 
+    var password = document.getElementById("Contraseña").value;
 
-            if (username === "Maria" && password === "03031964") {
-                window.location.href = "index.html"; // Redirigir a la página del directorio
-                return false; 
-            } else {
-                alert("Usuario o contraseña incorrectos.");
-                return false;
-            }
-        }
+    console.log("Usuario:", username, "Contraseña:", password); // Consola para depuración
+
+    if (username === "Maria" && password === "03031964") {
+        window.location.href = "index.html"; // Verifica que el archivo existe
+        return false; 
+    } else {
+        alert("Usuario o contraseña incorrectos.");
+        return false;
+    }
+}
 
         function togglePassword() {
             var passwordInput = document.getElementById("Contraseña"); // Cambiado a "Contraseña"
